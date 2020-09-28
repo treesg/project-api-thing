@@ -40,12 +40,13 @@ const WeaponList = (props) => {
         </div>
         <div>
           {props.items.slice(results-30, results).map((item, i) => {
-            //console.log(item)
+            //if (item.type !== 'noted'){
               return (
                 <Link to={`/item/${item.id}`} key={item.id}>
                   <img src={icons === undefined ? '126.gif' : `data:image/png;base64,${icons[i].data._items[0].icon}`} alt={item.name} />
                 </Link>
               );
+            //}
           })}
         </div>
         </div>

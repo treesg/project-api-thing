@@ -5,6 +5,8 @@ import itemsSearch from './items-search.json';
 import ItemList from './component/ItemList.js';
 import ItemDetail from './component/ItemDetail.js';
 
+let itemsDB = itemsSearch.filter(item => item.type !== 'noted')
+
 
 function App() {
   const [items, setItems] = useState([]);
@@ -47,7 +49,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path="/item/:id" render={(props) => <ItemDetail {...props} item={items} />} />
-        <Route exact path="/" render={(props) => <ItemList {...props} items={itemsSearch} search={search} />} />
+        <Route exact path="/" render={(props) => <ItemList {...props} items={itemsDB} search={search} />} />
       </Switch>
     </div>
   );
