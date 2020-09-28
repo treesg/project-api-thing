@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 const axios = require('axios').default;
 
 const WeaponDetail = (props) => {
@@ -21,6 +22,7 @@ const WeaponDetail = (props) => {
     console.log(props)
     return (
       <>
+        <Link to='/'>Back</Link>
         <img src={ item === undefined ? '126.gif' : `data:image/png;base64,${item.icon}`} alt={item === undefined ? 'Loading' : item.name} />
         <p>{item === undefined ? 'Loading' : item.name}</p>
         <p>{item === undefined ? 'Loading' : item.examine}</p>

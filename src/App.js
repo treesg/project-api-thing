@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import itemsSearch from './items-search.json';
 import ItemList from './component/ItemList.js';
 import ItemDetail from './component/ItemDetail.js';
 
-let itemsDB = itemsSearch.filter(item => item.type !== 'noted')
+// Remove all noted variants of items
+// Maybe they will be used later? ;-)
+let itemsDB = itemsSearch.filter(item => item.type !== 'noted');
 
 
 function App() {
-  const [items, setItems] = useState([]);
-  const [search, setSearch] = useState('rune');
+
+  // Might be used to update items-search.json from api
+
   // let today = new Date()
   // let yesterday = new Date()
   // let lastUpdated = new Date()
@@ -48,8 +51,8 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route exact path="/item/:id" render={(props) => <ItemDetail {...props} item={items} />} />
-        <Route exact path="/" render={(props) => <ItemList {...props} items={itemsDB} search={search} />} />
+        <Route exact path="/item/:id" render={(props) =><ItemDetail {...props} />} />
+        <Route exact path="/" render={(props) => <ItemList {...props} items={itemsDB} />} />
       </Switch>
     </div>
   );
