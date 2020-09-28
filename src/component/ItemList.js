@@ -6,8 +6,9 @@ const WeaponList = (props) => {
   const [results, setResults] = useState(30);
   const [icons, setIcons] = useState();
 
-  const getIcons = function () {
+  const getIcons = () => {
     let promises = [];
+    console.log(results)
     props.items.slice(results-30, results).map(item => {
       promises.push(axios.get(`https://api.osrsbox.com/icons_items?where={ "id": ${item.id} }`))
     })
@@ -17,11 +18,17 @@ const WeaponList = (props) => {
   }
 
   const resultsLeft = () => {
+    setIcons(undefined)
     setResults(results - 30)
+    console.log(results)
+    getIcons()
   }
 
   const resultsRight = () => {
+    setIcons(undefined)
     setResults(results + 30)
+    console.log(results)
+    getIcons()
   }
 
   useEffect(() => {
@@ -38,8 +45,11 @@ const WeaponList = (props) => {
         </div>
         <div>
           {props.items.slice(results-30, results).map((item, i) => {
+            //console.log(item)
               return (
-                <Link to={`/item/${item.id}`} key={item.id}><img src={icons === undefined ? '126.gif' : `data:image/png;base64,${icons[i].data._items[0].icon}`} alt={item.name} /></Link>
+                <Link to={`/item/${item.id}`} key={item.id}>
+                  <img src={icons === undefined ? '126.gif' : `data:image/png;base64,${icons[i].data._items[0].icon}`} alt={item.name} />
+                </Link>
               );
           })}
         </div>
