@@ -18,22 +18,17 @@ const WeaponList = (props) => {
   }
 
   const resultsLeft = () => {
-    setIcons(undefined)
     setResults(results - 30)
-    console.log(results)
-    getIcons()
   }
 
   const resultsRight = () => {
-    setIcons(undefined)
     setResults(results + 30)
-    console.log(results)
-    getIcons()
   }
 
   useEffect(() => {
+    setIcons(undefined)
     getIcons()
-  }, [])
+  }, [results])
 
   
   console.log(results-30, results)
